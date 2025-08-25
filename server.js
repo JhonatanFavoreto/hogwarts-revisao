@@ -1,7 +1,7 @@
 import express from "express";
 import dados from "./src/data/dados.js"
 
-const {bruxos, casas, varinhas} = dados;
+const {bruxos, casas, varinhas, animais, pocoes} = dados;
 
 const app = express();
 app.get("/", (req, res) => {
