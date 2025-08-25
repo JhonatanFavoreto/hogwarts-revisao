@@ -1,20 +1,67 @@
 import express from "express";
 import dados from "./src/data/dados.js"
 
-const {bruxos, casas} = dados;
+const {bruxos, casas, varinhas} = dados;
 
 const app = express();
 app.get("/", (req, res) => {
-  res.send("Vamos de Harry Potter");
+  res.send("Bem-vindo ao mundo de Harry Potter");
 });
 
 app.get("/bruxos", (req, res) => {
-  res.json(bruxos);
-});
+  if(bruxos.length > 0) {
+    res.status(200).json(bruxos);
+  } else {
+    res.status(404).json(
+      {
+        mensagem: "⚠️ Página não encontrada"
+      })
+    }
+    });
 
 app.get("/casas", (req, res) => {
-  res.json(casas);
-});
+  if(casas.length > 0) {
+    res.status(200).json(casas);
+  } else {
+    res.status(404).json(
+      {
+        mensagem: "⚠️ Página não encontrada"
+      })
+    }
+    }); 
+
+app.get("/varinhas", (req, res) => {
+  if(varinhas.length > 0) {
+    res.status(200).json(varinhas);
+  } else {
+    res.status(404).json(
+      {
+        mensagem: "⚠️ Página não encontrada"
+      })
+    }
+    });
+
+app.get("/animais", (req, res) => {
+  if(animais.length > 0) {
+    res.status(200).json(dados.animais);
+  } else {
+    res.status(404).json(
+      {
+        mensagem: "⚠️ Página não encontrada"
+      })
+    }
+    });
+
+app.get("/pocoes", (req, res) => {
+  if(pocoes.length > 0) {
+    res.status(200).json(dados.pocoes);
+  } else {
+    res.status(404).json(
+      {
+        mensagem: "⚠️ Página não encontrada"
+      })
+    }
+    });
 
 app.get("/bruxos/:id", (req, res) => {
     const id = parseInt(req.params.id);
@@ -25,7 +72,7 @@ app.get("/bruxos/:id", (req, res) => {
         res.status(200).json(bruxo);
     } else {
         res.status(404).json({
-            mensagem: "Bruxo não encontrado"
+            mensagem: "⚠️ Página não encontrada"
         })
     }
 });
@@ -40,7 +87,7 @@ app.get("/personagem/nome/:nome", (req, res) => {
         res.status(200).json(nomeFiltrados);
     } else {
         res.status(404).json({
-            mensagem: "Bruxo não encontrado"
+            mensagem: "⚠️ Página não encontrada"
         })
     }
 });
